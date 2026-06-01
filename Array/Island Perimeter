@@ -1,0 +1,59 @@
+class Solution {
+    public int islandPerimeter(int[][] grid) {
+        int total = 0;
+        int row = grid.length;
+        int col = grid[0].length;
+        for(int i = 0; i<row; i++){
+            for(int j = 0; j<col; j++){
+
+                if(grid[i][j] == 0){
+                    continue;
+                }
+                //boundary
+                if(i == 0){
+                    total += 1;
+                }
+                if(i == row-1){
+                    total += 1;
+                }
+                if(j == 0){
+                    total += 1;
+                }
+                if(j == col-1){
+                    total += 1;
+                }
+
+                //centre
+
+                //up
+                if(i != 0){
+                    if(grid[i-1][j] == 0){
+                        total += 1;
+                    }
+                }
+
+                //down
+                if(i != row-1){
+                    if(grid[i+1][j] == 0){
+                        total += 1;
+                    }
+                }
+
+                //left
+                if(j != 0){
+                    if(grid[i][j-1] == 0){
+                        total += 1;
+                    }
+                }
+
+                //right
+                if(j != col-1){
+                    if(grid[i][j+1] == 0){
+                        total += 1;
+                    }
+                }
+            }
+        }
+        return total;
+    }
+}
