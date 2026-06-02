@@ -1,0 +1,65 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        int rows = 9;
+        int cols = 9;
+
+        //check rows
+        for(int i = 0; i<rows; i++){
+            //[char, count]
+            boolean[] arr = new boolean[9];
+            for(int j = 0; j< cols; j++){
+                if(board[i][j] == '.'){
+                    continue;
+                }
+                int temp = board[i][j] - '0';
+                if(arr[--temp] == true){
+                    return false;
+                }
+                else{
+                    arr[temp] = true;
+                }
+            }
+        }
+
+        //check cols
+        for(int i = 0; i<cols; i++){
+            //[char, count]
+            boolean[] arr = new boolean[9];
+            for(int j = 0; j< cols; j++){
+                if(board[j][i] == '.'){
+                    continue;
+                }
+                int temp = board[j][i] - '0';
+                if(arr[--temp] == true){
+                    return false;
+                }
+                else{
+                    arr[temp] = true;
+                }
+            }
+        }
+
+        //check boxes
+        for(int i = 0; i<9; i+=3){//row
+            //[char, count]
+            for(int j = 0; j<9; j+=3){//col
+                boolean[] arr = new boolean[9]; // new block = new testset
+                for(int x = i; x<i+3; x++){ //block rows
+                    for(int y = j; y<j+3; y++){ //block cols
+                        if(board[x][y] == '.'){
+                            continue;
+                        }
+                        int temp = board[x][y] - '0';
+                        if(arr[--temp] == true){
+                            return false;
+                        }
+                        else{
+                            arr[temp] = true;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
